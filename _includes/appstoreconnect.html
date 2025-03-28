@@ -1,81 +1,75 @@
 {% if site.ios_app_id %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+$(document).ready(function () {
   const iosAppId = "{{ site.ios_app_id }}";
   const iosAppCountry = "{{ site.ios_app_country }}";
 
   if (iosAppId) {
-    const apiURL = `https://itunes.apple.com/lookup?id=${iosAppId}&country=${iosAppCountry}&callback=?`;
-
-    fetch(apiURL.replace("&callback=?", ""))
-      .then(response => response.json())
-      .then(json => {
+    $.ajax({
+      url: "https://itunes.apple.com/lookup",
+      dataType: "jsonp",
+      data: {
+        id: iosAppId,
+        country: iosAppCountry
+      },
+      success: function (json) {
         if (json.results && json.results.length) {
           console.info("Image strings loaded from Apple API.");
           const appInfo = json.results[0];
 
-          const favicon = document.querySelector('link[rel="shortcut icon"]');
-          if (favicon) favicon.href = appInfo.artworkUrl512;
+          const favicon = $('link[rel="shortcut icon"]');
+          if (favicon.length) favicon.attr("href", appInfo.artworkUrl512);
 
-          // // Set page title
-          const pageTitle = document.querySelector(".pageTitle");
-          if (pageTitle && pageTitle.textContent.trim().length === 0) {
-            pageTitle.textContent = appInfo.trackName;
+          const pageTitle = $(".pageTitle");
+          if (pageTitle.length && pageTitle.text().trim().length === 0) {
+            pageTitle.text(appInfo.trackName);
           }
 
-          // Set large app icon
-          const appIconLarge = document.getElementById("largeIcon");
-          if (appIconLarge && (!appIconLarge.getAttribute("src") ||
-             appIconLarge.getAttribute("src") === "{{ '/assets/placeholder-icon.png' | relative_url }}")) {
-            appIconLarge.setAttribute("src", appInfo.artworkUrl512);
+          const appIconLarge = $("#largeIcon");
+          if (appIconLarge.length && (!appIconLarge.attr("src") || appIconLarge.attr("src") === "{{ '/assets/placeholder-icon.png' | relative_url }}")) {
+            appIconLarge.attr("src", appInfo.artworkUrl512);
           }
 
-          // Set header app icon
-          const appIconHeader = document.getElementById("headerIcon");
-          if (appIconHeader && (!appIconHeader.getAttribute("src") ||
-             appIconHeader.getAttribute("src") === "{{ '/assets/placeholder-icon.png' | relative_url }}")) {
-            appIconHeader.setAttribute("src", appInfo.artworkUrl512);
+          const appIconHeader = $("#headerIcon");
+          if (appIconHeader.length && (!appIconHeader.attr("src") || appIconHeader.attr("src") === "{{ '/assets/placeholder-icon.png' | relative_url }}")) {
+            appIconHeader.attr("src", appInfo.artworkUrl512);
             console.log(appInfo.artworkUrl512);
           }
 
-          // Set app name
-          const appName = document.getElementById("appName");
-          if (appName) {
-          if (appName.textContent.trim().length === 0 || appName.textContent.trim() === "Your App Name") {
-            appName.textContent = appInfo.trackName;
-          }
+          const appName = $("#appName");
+          if (appName.length && (appName.text().trim().length === 0 || appName.text().trim() === "Your App Name")) {
+            appName.text(appInfo.trackName);
           }
 
-          // Set header name
-          const headerName = document.getElementById("headerName");
-          if ((headerName.textContent.trim().length === 0) || headerName.textContent.trim() === "Your App Name") {
-            headerName.textContent = appInfo.trackName;
+          const headerName = $("#headerName");
+          if (headerName.length && (headerName.text().trim().length === 0 || headerName.text().trim() === "Your App Name")) {
+            headerName.text(appInfo.trackName);
           }
 
-          // Set price
-          const appPrice = document.getElementById("appPrice");
-          if (appPrice && appPrice.textContent.trim().length === 0) {
-            appPrice.textContent = appInfo.formattedPrice;
+          const appPrice = $("#appPrice");
+          if (appPrice.length && appPrice.text().trim().length === 0) {
+            appPrice.text(appInfo.formattedPrice);
           }
 
-          // Set App Store link
-          const appStoreLink = document.getElementById("appStoreLink");
-          if (appStoreLink && appStoreLink.getAttribute("href").trim().length === 0) {
-            appStoreLink.setAttribute("href", appInfo.trackViewUrl);
+          const appStoreLink = $("#appStoreLink");
+          if (appStoreLink.length && appStoreLink.attr("href").trim().length === 0) {
+            appStoreLink.attr("href", appInfo.trackViewUrl);
           }
 
-          // Set App Description
-          const appDescription = document.getElementById("appDescription");
-          if (appDescription && appDescription.textContent.trim().length === 0) {
-            appDescription.textContent = appInfo.description;
+          const appDescription = $("#appDescription");
+          if (appDescription.length && appDescription.text().trim().length === 0) {
+            appDescription.text(appInfo.description);
           }
 
           console.info(appInfo);
         }
-      })
-      .catch(error => console.error("Error fetching App Store info:", error));
+      },
+      error: function (xhr, status, error) {
+        console.error("Error fetching App Store info:", error);
+      }
+    });
   }
 });
 </script>
-
 {% endif %}
