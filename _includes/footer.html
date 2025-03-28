@@ -1,0 +1,42 @@
+<footer class="footer mt-5">
+      <div class="content has-text-centered">
+        {% if site.your_name %}
+        <p>Made with ❤️ by {% if site.your_link %}<a href="{{ site.your_link }}">{% endif %}{{ site.your_name }}{% if site.your_link %}</a>{% endif %}{% if site.your_city %} in {{ site.your_city }}{% endif %}</p>
+        {% endif %}
+
+        <div class="social-icons">
+            {% if site.email_address %}
+            <a href="mailto:{{ site.email_address }}" class="icon is-large" aria-label="E-mail">
+              <i class="fa fas fa-envelope fa-2x"></i>
+            </a>
+            {% endif %}
+            {% if site.twitter_username %}
+          <a href="https://twitter.com/{{ site.twitter_username }}" class="icon is-large" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter fa-2x"></i>
+          </a>
+          {% endif %}
+          <a href="#" class="icon is-large" aria-label="GitHub">
+            <i class="fa-brands fa-github fa-2x"></i>
+          </a>
+          <a href="https://bsky.app/profile/{{ site.bluesky_profile }}" class="icon is-large" aria-label="Bluesky">
+            <i class="fa-brands fa-bluesky fa-2x"></i>
+          </a>
+          {% if site.mastodon_link %}
+          <a href="{{ site.mastodon_link }}" class="icon is-large" aria-label="Mastodon">
+            <i class="fa-brands fa-mastodon fa-2x"></i>
+          </a>
+          {% endif %}
+          {% if site.instagram_username %}
+          <a href="https://instagram.com/{{ site.instagram_username }}" class="icon is-large" aria-label="Instagram">
+            <i class="fa-brands fa-instagram fa-2x"></i>
+          </a>
+          {% endif %}
+        </div>
+
+        <div class="footer-links">
+            {% for page in site.pages %}
+			<a href="{{ page.url | relative_url }}" target="_self">{{ page.title }}</a>
+			{% endfor %}
+        </div>
+      </div>
+  </footer>

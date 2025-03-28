@@ -1,0 +1,23 @@
+        <div class="column is-two-thirds">
+            <div class="columns is-multiline " style="height: 100%;">
+                {% assign features_to_show = site.features | slice: 0, 6 %}
+                {% for feature in features_to_show %}
+                {% if feature.title %}
+                <div class="column is-6" style="height: 33.333%;">
+                    <div class="card feature-box  m-1">
+                        <div class="card-content  is-flex is-flex-direction-column is-justify-content-center">
+                            <div class="has-text-centered mb-2">
+                                <span class="icon is-large">
+                                    <i class="fa-solid fa-{{ feature.fontawesome_icon_name }} fa-2x"></i>
+                                </span>
+                            </div>
+                            <h4 class="title is-5 has-text-centered">{{ feature.title }}</h4>
+                            <p class="has-text-centered">{{ feature.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>

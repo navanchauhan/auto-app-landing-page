@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+{% include head.html %}
+
+<body>
+    {% include header.html %}
+
+    <div class="px-5">
+    <div class="columns is-multiline is-variable is-4">
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media is-align-items-center">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img src="{{ '/assets/placeholder-icon.png' | relative_url }}" class="app-icon" alt="Large app icon" id="largeIcon">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-3" id="appName">Your App Name</p>
+                            <p class="subtitle is-6" id="appPrice">{{ site.app_price }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content has-text-centered">
+                        <p class="subtitle is-3">{{ site.app_tagline }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third">
+            <div class="card">
+                <div class="card-content">
+                    <div class="content has-text-centered">
+                        <a href="{{ site.appstore_link }}" id="appStoreLink">
+                            <img src="{{ '/assets/apple-app-store.svg' | relative_url }}" alt="App Store" class="store-button">
+                        </a>
+                        {% if site.playstore_link %}
+                        <a href="{{ site.playstore_link }}">
+                        <img src="{{ '/assets/google-play-store.svg' | relative_url }}" alt="Play Store" class="store-button">
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-one-third is-flex">
+            <div class="card is-flex-grow-1">
+                <div class="card-content is-flex-grow-1">
+                    <div class="phone-container">
+                        <img src="{{ '/assets/iphone-16-pro-black-titanium.png' | relative_url }}" class="phone-frame" alt="iPhone frame">
+                        <img src="{{ '/assets/screenshot/default.jpeg' | relative_url }}" class="phone-screenshot" alt="App screenshot">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features on the right -->
+        {% include features.html %}
+
+        {% if site.features.size > 6 %}
+        <div class="column is-full">
+            <div class="columns is-multiline">
+                {% assign rest = site.features | slice: 6, site.features.size %}
+                {% for feature in rest %}
+                {% if feature.title %}
+                <div class="column is-is-one-third">
+                    <div class="card feature-box">
+                        <div class="card-content">
+                            <div class="has-text-centered mb-2">
+                                <span class="icon is-large">
+                                    <i class="fas fa-{{ feature.fontawesome_icon_name }} fa-2x"></i>
+                                </span>
+                            </div>
+                            <h4 class="title is-5 has-text-centered">{{ feature.title }}</h4>
+                            <p class="has-text-centered">{{ feature.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div class="column is-full">
+        <div class="card">
+            <div class="card-content">
+                {% if site.app_description %}
+                <div class="content has-text-centered subtitle">
+                {% else %}
+                <div class="content subtitle">
+                {% endif %}
+                    <p style="white-space: pre-wrap;" id="appDescription">{{ site.app_description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% include appstoreconnect.html %}
+    {% include footer.html %}
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+page_title                                :                                           # Automatically populates with app name if not set and if iOS app ID is set. Otherwise enter manually.
+
+# App Info
+ios_app_id                                : 640199958                                 # Required. Enter iOS app ID to automatically populate name, price and icons (e.g. 718043190).
+ios_app_country                           : us                                        # Required outside USA. Enter 2 letter country code as in https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+
+appstore_link                             :                                           # Automatically populates if not set and if iOS app ID is set. Otherwise enter manually.
+playstore_link                            :                                           # Enter Google Play Store URL.
+
+app_icon                                  : # assets/appicon.png                      # Automatically populates if not set and if iOS app ID is set.  Otherwise enter path to icon file manually.
+app_name                                  :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
+app_price                                 :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
+app_tagline                               : A short and catchy tagline.
+app_description                           :                                           # Automatically populates if not set and if iOS app ID is set.  Otherwise enter manually.
+enable_smart_app_banner                   : true                                      # Set to true to show a smart app banner at top of page on mobile devices.
+
+# Information About Yourself
+your_name                                 : Navan
+your_link                                 : https://web.navan.dev
+your_city                                 : REDACTED LOCATION
+email_address                             : ghpageapp@navan.email
+instagram_username                        : navanchauhan
+twitter_username                          : navanchauhan
+github_username                           : navanchauhan
+mastodon_link                             : https://mastodon.social/@navanchauhan
+bluesky_profile                           : navan.dev
+
+# Feature List                            Edit, add or remove features to be presented.
+features                                  :
+
+  - title                                 : GitHub Pages Jekyll Theme
+    description                           : Designed for GitHub Pages. Fork. Edit _config.yml. Upload screenshot. Push to gh-pages branch. Voilá!
+    fontawesome_icon_name                 : magic
+
+  - title                                 : iPhone Device Preview
+    description                           : Preview your app in the context of an iPhone device.
+    fontawesome_icon_name                 : mobile
+
+  - title                                 : Dark/Light Mode
+    description                           : Automatically switch between dark and light mode based on user's system preferences.
+    fontawesome_icon_name                 : circle-half-stroke
+
+  - title                                 : Automatic Icon and Metadata
+    description                           : Enter iOS app ID in the _config.yml file to automatically fetch app icon, price and App Store Link.
+    fontawesome_icon_name                 : sync
+  - title                                 : Feature List
+    description                           : Add features (like this one) to your site via the _config.yml file. No HTML/CSS needed.
+    fontawesome_icon_name                 : star
+
+  - title                                 : Smart App Banner
+    description                           : Display a smart app banner on iOS devices.
+    fontawesome_icon_name                 : arrow-alt-circle-down
+
+  - title                                 : Social Links
+    description                           : Easily add social media accounts and contact info in the footer via the _config.yml file. No HTML/CSS needed.
+    fontawesome_icon_name                 : link
+
+  - title                                 : FontAwesome Support
+    description                           : Pick custom Font Awesome icons for the feature list via the _config.yml file. No HTML/CSS needed.
+    fontawesome_icon_name                 : info-circle
+
+  - title                                 : Feature Requests
+    description                           : Want to request a feature? Open an issue on GitHub.
+    fontawesome_icon_name                 : comments
+
+  - title                                 : # New Feature Title
+    description                           : # New Feature Description
+    fontawesome_icon_name                 : # Enter Font Awesome icon name (e.g. star). Find icons on https://fontawesome.com/search?o=r&ic=free&s=solid&ip=classic.
+
+
+
+# Theme Settings
+accent_color                              : "#4dbcb6"                                 # Set the accent color. Use a hex color value.
+footer_link_color                         : "#4dbcb6"
+
+
+####################################################
+### Jekyll Configuration. No need to touch this. ###
+####################################################
+
+# Exclude these files from your production _site
+exclude:
+  - LICENSE
+  - README.md
+  - CNAME
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
+# Markdown rendering
+markdown: kramdown
